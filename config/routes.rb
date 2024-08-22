@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "statics#index"
+  resources :statics
   resources :answers
   resources :questions
   resources :tests
