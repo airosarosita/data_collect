@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @static %>
+
+<div>
+  <%= link_to "Edit this static", edit_static_path(@static) %> |
+  <%= link_to "Back to statics", statics_path %>
+
+  <%= button_to "Destroy this static", @static, method: :delete %>
+</div>

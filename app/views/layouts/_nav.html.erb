@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<title>Lapangbola Football Data Collect</title>
+<style>
+  body {
+    padding-top: 4rem;
+  }
+</style>
+</head>
+<body>
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 left-0 w-full bg-green-700 shadow-md z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <div class="text-2xl text-white font-bold">
+          <%= link_to "Football Data Collect", root_path, class: "hover:font-bold" %>
+        </div>
+      </div>
+
+    
+      <!-- User Authentication Links -->
+      <div class="flex items-center space-x-4">
+        <% if user_signed_in? %>
+          <%= link_to edit_user_registration_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <i class="fas fa-user"></i> Profile
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <i class="fas fa-sign-out-alt"></i> Logout
+          <% end %>
+        <% else %>
+          <%= link_to new_user_session_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <i class="fas fa-sign-in-alt"></i> Login
+          <% end %>
+          <%= link_to new_user_registration_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <i class="fas fa-user-plus"></i> Sign up
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+</html>
