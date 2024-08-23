@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   root "statics#index"
+  
+  devise_scope :user do
+    get '/users/sign_out', to: 'devise/sessions#destroy'
+  end
+  
+  # Admin routes
+  namespace :admin do
+    get 'dashboards', to: 'dashboards#index', as: 'dashboards'
+    resource :dashboards
+  end
   resources :statics
   resources :answers
   resources :questions
@@ -7,9 +17,8 @@ Rails.application.routes.draw do
   devise_for :users
   
 
-  devise_scope :user do
-     get '/users/sign_out', to: 'devise/sessions#destroy'
-  end
+  
+
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

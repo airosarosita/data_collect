@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<title>Lapangbola Football Data Collect</title>
-<style>
-  body {
-    padding-top: 4rem;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Lapangbola Football Data Collect</title>
+  <style>
+    body {
+      padding-top: 4rem;
+    }
+  </style>
 </head>
 <body>
 <!-- Top Navigation Bar -->
@@ -23,17 +23,31 @@
         </div>
       </div>
 
-    
       <!-- User Authentication Links -->
       <div class="flex items-center space-x-4">
         <% if user_signed_in? %>
-          <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
-            <i class="fas fa-user"></i> Profile
-          <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
-            <i class="fas fa-sign-out-alt"></i> Logout
+          <% if current_user.admin? %>
+            <!-- Admin Navbar -->
+            <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <i class="fas fa-user"></i> Profile
+            <% end %>
+            <%= link_to admin_dashboards_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <i class="fas fa-cogs"></i> Admin Dashboard
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <i class="fas fa-sign-out-alt"></i> Logout
+            <% end %>
+          <% else %>
+            <!-- Client Navbar -->
+            <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <i class="fas fa-user"></i> Profile
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <i class="fas fa-sign-out-alt"></i> Logout
+            <% end %>
           <% end %>
         <% else %>
+          <!-- Guest Navbar -->
           <%= link_to new_user_session_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
             <i class="fas fa-sign-in-alt"></i> Login
           <% end %>
