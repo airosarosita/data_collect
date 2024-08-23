@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full bg-green-700 shadow-md z-10">
+<nav class="fixed top-0 left-0 w-full" style="background-color: #221764;">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <!-- Logo -->
@@ -27,17 +27,17 @@
       <!-- User Authentication Links -->
       <div class="flex items-center space-x-4">
         <% if user_signed_in? %>
-          <%= link_to edit_user_registration_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+          <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
             <i class="fas fa-user"></i> Profile
           <% end %>
-          <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
             <i class="fas fa-sign-out-alt"></i> Logout
           <% end %>
         <% else %>
-          <%= link_to new_user_session_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+          <%= link_to new_user_session_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
             <i class="fas fa-sign-in-alt"></i> Login
           <% end %>
-          <%= link_to new_user_registration_path, class: "text-white hover:bg-green-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+          <%= link_to new_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
             <i class="fas fa-user-plus"></i> Sign up
           <% end %>
         <% end %>
