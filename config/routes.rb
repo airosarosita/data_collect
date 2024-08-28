@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Admin routes
   namespace :admin do
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
-    resources :lessons, only: [:new, :create, :index]
+    resources :lessons, only: [:new, :create, :index, :edit]
     resources :contents
   end
   resources :statics

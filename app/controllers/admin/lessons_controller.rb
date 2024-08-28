@@ -8,7 +8,7 @@ class Admin::LessonsController < ApplicationController
 
   #GET /lesson/edit
   def edit
-    @lesson = Lesson.find
+    @lesson = Lesson.find(params[:id])
   end
   
 
@@ -20,10 +20,16 @@ class Admin::LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   def create
     @lesson = Lesson.new(lesson_params)
-    if @lesson.save
-      redirect_to admin_lessons_path, notice: "Lesson successfully created."
-    else
-      render :new 
+    @lesson.user_id = current_user.id
+
+    respond_to do |format|
+      if @lesson.save
+        format.html { redirect_to admin_lessons_path, notice: 'Lesson was successfully created.' }
+        format.json { render :show, status: :created, location: @lesson }
+      else
+        format.html { render :new }
+        format.json { render json: @lesson.errors, status: :unprocessable_entity }
+      end
     end
   end
 
