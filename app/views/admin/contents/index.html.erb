@@ -1,0 +1,19 @@
+<div class="flex justify-center">
+  <div class="w-full max-w-6xl p-6">
+
+    <div class="flex justify-between items-center mb-2 ml-10">
+      <h1 class="text-2xl font-bold text-gray-800 ml-60">Content</h1>
+      <%= link_to "Tambah", new_admin_content_path, class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-60">
+      <% @contents.each do |content| %>
+        <div class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h2 class="font-bold text-indigo-700 text-lg mb-2"><%= content.title %></h2>
+          <p class="text-gray-600 mb-4">Your text here.</p>
+          <%= link_to "View Content", edit_admin_content_path(content), class: "text-blue-500 hover:underline" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

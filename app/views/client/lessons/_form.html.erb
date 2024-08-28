@@ -1,0 +1,30 @@
+<%= form_with(model: @lesson, local: true) do |form| %>
+  <% if @lesson.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
+      <ul>
+        <% @lesson.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Title Field -->
+  <div class="mb-4">
+    <%= form.text_field :title, placeholder: "Title", class: "w-full border-2 border-purple-600 p-2 rounded-md" %>
+  </div>
+
+  <!-- Rich Text Editor -->
+  <div class="mb-4">
+    <%= form.label :content, "Content", class: "sr-only" %>
+    <%= form.rich_text_area :content, class: "w-full border-2 border-purple-600 p-2 rounded-md h-40" %>
+  </div>
+
+  <!-- Save and Cancel Buttons -->
+  <div class="flex justify-end space-x-2">
+    <%= form.submit "Save", class: "bg-purple-600 text-white px-4 py-2 rounded-md" %>
+    <%= link_to "Cancel", lessons_path, class: "bg-purple-600 text-white px-4 py-2 rounded-md" %>
+  </div>
+  
+<% end %>

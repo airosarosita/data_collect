@@ -1,0 +1,17 @@
+<%= form_with(model: @lesson, local: true) do |form| %>
+    <div class="field mb-4">
+      <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :title, placeholder: "Title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  
+    <div class="field mb-4">
+      <%= form.label :body, "Content", class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.rich_text_area :body, placeholder: "Input your text here.", rows: 10, class: "w-full border rounded p-3 text-gray-700 focus:outline-none focus:shadow-outline" %>
+    </div>
+  
+    <div class="actions flex justify-end space-x-2 mt-4">
+      <%= form.submit "Save", class: "bg-indigo-800 text-white font-semibold py-2 px-4 rounded-lg mr-4" %>
+      <%= link_to 'Cancel', admin_lessons_path, class: "bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg" %>
+    </div>
+  <% end %>
+  

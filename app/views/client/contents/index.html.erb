@@ -1,0 +1,18 @@
+<div class="flex">
+  <div class="w-full p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h1 class="text-xl font-bold">Content</h1>
+      <%= link_to "Tambah", new_admin_content_path, class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+    </div>
+
+    <div class="grid grid-cols-3 gap-4">
+      <% @contents.each do |content| %>
+        <div class="border p-4 shadow hover:shadow-md transition-shadow duration-300">
+          <h2 class="font-bold text-indigo-700"><%= content.title %></h2>
+          <p class="text-gray-500">Your text here.</p>
+          <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

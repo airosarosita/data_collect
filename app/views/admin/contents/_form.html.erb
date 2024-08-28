@@ -1,0 +1,20 @@
+<%= form_with(model: content, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image, "Upload Image" %>
+    <%= form.file_field :image, class: "form-control-file" %>
+  </div>
+
+  <div class="actions mt-4">
+    <%= form.submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>

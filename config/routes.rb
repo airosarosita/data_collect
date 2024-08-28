@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contents
   root "statics#index"
   
   devise_scope :user do
@@ -8,13 +9,19 @@ Rails.application.routes.draw do
   # Admin routes
   namespace :admin do
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
-    resource :dashboards
+    resources :lessons, only: [:new, :create, :index]
+    resources :contents
   end
   resources :statics
   resources :answers
   resources :questions
   resources :tests
   devise_for :users
+
+   # Client routes
+   resources :contents
+   resources :lessons
+   # Add other client routes here
   
 
   
@@ -29,3 +36,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 end
+
