@@ -12,12 +12,11 @@ Rails.application.routes.draw do
     resources :contents
 
     resources :lessons do
-    resources :contents, only: [:new, :create]
+      resources :contents
     end
-      get 'content'
     
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
-    resources :lessons, only: [:new, :create, :index, :edit]
+   
     resources :contents
   end
   resources :statics
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
 
    # Client routes
    resources :contents
-   resources :lessons
+   
    # Add other client routes here
   
 

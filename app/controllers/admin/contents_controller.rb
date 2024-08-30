@@ -1,31 +1,20 @@
 class Admin::ContentsController < ApplicationController
   before_action :set_content, only: %i[ show edit update destroy ]
+  before_action :set_lesson, only: %i[ new create ]
 
-  # GET /contents or /contents.json
+
   def index
     @contents = Content.all
   end
-  
-  # GET /contents/1 or /contents/1.json
-  def show
-    
-  end
-  
   # GET /contents/new
   def new
-    @content = Content.new
+    @content = @lesson.contents.build
     @all_contents = Content.all
   end
 
-  # GET /contents/1/edit
-  def edit
-  end
-
-
-
   # POST /contents or /contents.json
   def create
-    @content = Content.new(content_params)
+    @content = @lesson.contents.build(content_params)
 
     respond_to do |format|
       if @content.save
@@ -37,12 +26,19 @@ class Admin::ContentsController < ApplicationController
       end
     end
   end
+  
+  def destroy
+    @content.destroy
+    respond_to do |format|
+      format.html { redirect_to admin_contents_url, notice: "Content was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
 
-  # PATCH/PUT /contents/1 or /contents/1.json
   def update
     respond_to do |format|
       if @content.update(content_params)
-        format.html { redirect_to content_url(@content), notice: "Content was successfully updated." }
+        format.html { redirect_to admin_content_url(@content), notice: "Content was successfully updated." }
         format.json { render :show, status: :ok, location: @content }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -51,28 +47,17 @@ class Admin::ContentsController < ApplicationController
     end
   end
 
-  # DELETE /contents/1 or /contents/1.json
-  def destroy
-    @content.destroy!
+  private
 
-    respond_to do |format|
-      format.html { redirect_to admin_contents_url, notice: "Content was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  def set_content
+    @content = Content.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_content
-      @content = Content.find(params[:id])
-    end
+  def set_lesson
+    @lesson = Lesson.find(params[:lesson_id])
+  end
 
-    def current_lesson
-      @current_lesson ||= Lesson.find(params[:lesson_id]) # Adjust based on your actual setup
-    end
-
-    # Only allow a list of trusted parameters through.
-    def content_params
-      params.require(:content).permit(:title, :lesson_id)
-    end
+  def content_params
+    params.require(:content).permit(:title, :content)
+  end
 end
