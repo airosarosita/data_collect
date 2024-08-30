@@ -1,20 +1,20 @@
-<%= form_with(model: content, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
-  </div>
+<div class="flex justify-center mt-6">
+  <div class="w-full max-w-4xl px-4 sm:px-6 lg:px-8">
+    <%= form_with(model: @content, local: true) do |form| %>
+      <div class="mb-4">
+        <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_field :title, placeholder: "Title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, class: "form-control" %>
-  </div>
+      <div class="mb-4">
+        <%= form.label :body, "Content", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_area :body, placeholder: "Input your text here.", rows: 10, class: "w-full border rounded p-3 text-gray-700 focus:outline-none focus:shadow-outline" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :image, "Upload Image" %>
-    <%= form.file_field :image, class: "form-control-file" %>
+      <div class="flex justify-end space-x-2 mt-4">
+        <%= form.submit "Save", class: "bg-indigo-800 text-white font-semibold py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:shadow-outline" %>
+        <%= link_to 'Cancel', admin_contents_path, class: "bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-400 focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
   </div>
-
-  <div class="actions mt-4">
-    <%= form.submit "Save", class: "btn btn-primary" %>
-  </div>
-<% end %>
+</div>

@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
+<div class="flex justify-between items-center mb-2 ml-10">
+  <h1 class="text-2xl font-bold text-gray-800 ml-60">Content</h1>
+  <%= link_to "Tambah", new_admin_content_path, class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+</div>
+
 <%= render @content %>
 
-<div>
-  <%= link_to "Edit this content", edit_content_path(@content) %> |
-  <%= link_to "Back to contents", contents_path %>
-
-  <%= button_to "Destroy this content", @content, method: :delete %>
+<div class="flex justify-end mt-4">
+  <div class="mr-4">
+    <%= link_to "Edit this content", edit_content_path(@content), class: "text-blue-600 hover:text-blue-800" %> |
+    <%= link_to "Back to contents", contents_path, class: "text-blue-600 hover:text-blue-800" %>
+  </div>
+  <%= button_to "Destroy this content", @content, method: :delete, class: "bg-red-600 text-white py-2 px-4 rounded hover:bg-red-500" %>
 </div>

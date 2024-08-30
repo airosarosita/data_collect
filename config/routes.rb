@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   
   # Admin routes
   namespace :admin do
+    resources :tests
+    resources :contents
+
+    resources :lessons do
+    resources :contents, only: [:new, :create]
+    end
+      get 'content'
+    
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
     resources :lessons, only: [:new, :create, :index, :edit]
     resources :contents
@@ -15,7 +23,6 @@ Rails.application.routes.draw do
   resources :statics
   resources :answers
   resources :questions
-  resources :tests
   devise_for :users
 
    # Client routes

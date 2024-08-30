@@ -1,7 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tests</h1>
+<h1>Assignment</h1>
 
+    <%= render @tests %>
 <div id="tests">
   <% @tests.each do |test| %>
     <%= render test %>
@@ -11,4 +12,4 @@
   <% end %>
 </div>
 
-<%= link_to "New test", new_test_path %>
+<%= link_to "New test", new_admin_test_path %>

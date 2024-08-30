@@ -10,8 +10,13 @@
     body {
       padding-top: 4rem;
     }
-
     .main-content {
+      margin-left: 20%;
+    }
+    .sidebar {
+      margin-left: 0;
+    }
+    .main-content-with-sidebar {
       margin-left: 20%;
     }
   </style>
@@ -24,22 +29,19 @@
       <div class="flex justify-between h-16 items-center">
         <!-- Logo -->
         <div class="text-1xl text-white font-bold">
-        <%= link_to root_path, class: "hover:font-bold text-white-500 flex items-center" do %>
-          <img src="<%= asset_path('logo1.png') %>" alt="Logo" class=" h-13">
-          <div>
-            <span class="block ">E-Learning System</span>
-            <span class="block text-xs font-normal ">Football Data Collect</span>
-          </div>
-
-        <% end %>
-        
-      </div>      
+          <%= link_to root_path, class: "hover:font-bold text-white flex items-center" do %>
+            <img src="<%= asset_path('logo1.png') %>" alt="Logo" class="h-13">
+            <div>
+              <span class="block">E-Learning System</span>
+              <span class="block text-xs font-normal">Football Data Collect</span>
+            </div>
+          <% end %>
+        </div>      
 
         <!-- User Authentication Links -->
         <div class="flex items-center space-x-4">
           <% if user_signed_in? %>
             <% if current_user.admin? %>
-
               <!-- Admin Navbar -->
               <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-user"></i> Profile
@@ -73,21 +75,26 @@
     </div>
   </nav>
 
-  <!-- Sidebar -->
-  <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen">
-    <div class="p-4">
-      <h2 class="text-lg font-semibold text-blue-800">Dashboard</h2>
-      <ul class="mt-4 space-y-4">
-        <li><%= link_to "User Management", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
-        <li><%= link_to "Test Management", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
-        <li><%= link_to "Lesson", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
-      </ul>
-    </div>
-  </div>
+  <!-- Sidebar and Main Content Wrapper -->
+  <div class="flex">
+    <!-- Sidebar -->
+    <% if user_signed_in? && current_user.admin? %>
+      <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
+        <div class="p-4">
+          <h2 class="text-lg font-semibold text-blue-800">Dashboard</h2>
+          <ul class="mt-4 space-y-4">
+            <li><%= link_to "User Management", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
+            <li><%= link_to "Test", admin_tests_path, class: "text-blue-800 hover:underline" %></li>
+            <li><%= link_to "Lesson", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
+          </ul>
+        </div>
+      </div>
+      <div class="flex-1 ml-1/5 main-content-with-sidebar p-6">
+    <% else %>
+      <div class="flex-1 main-content p-6">
+    <% end %>
 
-  <!-- Main Content -->
-  <div class="main-content p-6">
-    <!-- Your main content goes here -->
+    
   </div>
 </body>
 

@@ -1,4 +1,5 @@
 class Admin::LessonsController < ApplicationController
+  before_action :authenticate_user!
   # Other actions ...
 
   # GET /lessons/new
@@ -6,9 +7,18 @@ class Admin::LessonsController < ApplicationController
     @lesson = Lesson.new
   end
 
+  def show
+
+  end
+
   #GET /lesson/edit
   def edit
     @lesson = Lesson.find(params[:id])
+  end
+
+  def content
+    @lesson = Lesson.find(params[:id])
+    # Add any additional logic needed for displaying the content
   end
   
 

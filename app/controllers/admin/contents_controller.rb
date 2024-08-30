@@ -5,20 +5,20 @@ class Admin::ContentsController < ApplicationController
   def index
     @contents = Content.all
   end
-
+  
   # GET /contents/1 or /contents/1.json
   def show
     
   end
-
+  
   # GET /contents/new
   def new
     @content = Content.new
+    @all_contents = Content.all
   end
 
   # GET /contents/1/edit
   def edit
-    
   end
 
 
@@ -29,7 +29,7 @@ class Admin::ContentsController < ApplicationController
 
     respond_to do |format|
       if @content.save
-        format.html { redirect_to content_url(@content), notice: "Content was successfully created." }
+        format.html { redirect_to admin_content_url(@content), notice: "Content was successfully created." }
         format.json { render :show, status: :created, location: @content }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -56,7 +56,7 @@ class Admin::ContentsController < ApplicationController
     @content.destroy!
 
     respond_to do |format|
-      format.html { redirect_to contents_url, notice: "Content was successfully destroyed." }
+      format.html { redirect_to admin_contents_url, notice: "Content was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -67,8 +67,12 @@ class Admin::ContentsController < ApplicationController
       @content = Content.find(params[:id])
     end
 
+    def current_lesson
+      @current_lesson ||= Lesson.find(params[:lesson_id]) # Adjust based on your actual setup
+    end
+
     # Only allow a list of trusted parameters through.
     def content_params
-      params.require(:content).permit(:title, :content)
+      params.require(:content).permit(:title, :lesson_id)
     end
 end
