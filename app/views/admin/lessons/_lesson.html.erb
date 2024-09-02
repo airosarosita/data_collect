@@ -16,8 +16,7 @@
       <% @contents.each do |content| %>
         <div class="border border-gray-300 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-gray-50">
           <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= content.title %></h3>
-          <p class="text-sm text-gray-600">Lesson: <%= content.lesson.title %></p>
-          <p class="text-sm text-gray-700"><%= truncate(content.content, length: 100) %></p>
+          <p class="text-sm text-gray-700"><%= truncate(content.content, length: 30) %></p>
           <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
         </div>
       <% end %>

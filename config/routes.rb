@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :contents
   root "statics#index"
   
   devise_scope :user do
@@ -9,16 +8,17 @@ Rails.application.routes.draw do
   # Admin routes
   namespace :admin do
     resources :tests
-    resources :contents
+    
 
+    resources :contents
     resources :lessons do
       resources :contents
     end
     
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
    
-    resources :contents
   end
+
   resources :statics
   resources :answers
   resources :questions
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   
 
    # Client routes
-   resources :contents
+   
    
    # Add other client routes here
   

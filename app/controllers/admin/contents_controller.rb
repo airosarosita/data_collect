@@ -1,6 +1,6 @@
 class Admin::ContentsController < ApplicationController
   before_action :set_content, only: %i[ show edit update destroy ]
-  before_action :set_lesson, only: %i[ new create ]
+  before_action :set_lesson, only: %i[ new create]
 
 
   def index
@@ -9,6 +9,10 @@ class Admin::ContentsController < ApplicationController
 
   def show
     @content = Content.find(params[:id])
+  end
+
+  def edit
+    
   end
   
   # GET /contents/new

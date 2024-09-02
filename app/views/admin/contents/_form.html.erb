@@ -1,14 +1,14 @@
 <div class="flex justify-center mt-6">
   <div class="w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-    <%= form_with(model: @content, local: true) do |form| %>
+    <%= form_with(model: @content, url: admin_content_path(@content), local: true) do |form| %>
       <div class="mb-4">
         <%= form.label :title, class: "block text-gray-700 text-sm font-bold mb-2" %>
         <%= form.text_field :title, placeholder: "Title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="mb-4">
-        <%= form.label :artikel, "Content", class: "block text-gray-700 text-sm font-bold mb-2" %>
-        <%= form.text_area :artikel, placeholder: "Input your text here.", rows: 10, class: "w-full border rounded p-3 text-gray-700 focus:outline-none focus:shadow-outline" %>
+        <%= form.label :content, "Content", class: "block text-gray-700 text-sm font-bold mb-2" %>
+        <%= form.text_area :content, placeholder: "Input your text here.", id: "content", rows: 10, class: "w-full border rounded p-3 text-gray-700 focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div class="flex justify-end space-x-2 mt-4">
