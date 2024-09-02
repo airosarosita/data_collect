@@ -6,6 +6,11 @@ class Admin::ContentsController < ApplicationController
   def index
     @contents = Content.all
   end
+
+  def show
+    @content = Content.find(params[:id])
+  end
+  
   # GET /contents/new
   def new
     @content = @lesson.contents.build
@@ -18,7 +23,7 @@ class Admin::ContentsController < ApplicationController
 
     respond_to do |format|
       if @content.save
-        format.html { redirect_to admin_content_url(@content), notice: "Content was successfully created." }
+        format.html { redirect_to admin_lesson_path(@content.lesson), notice: "Content was successfully created." }
         format.json { render :show, status: :created, location: @content }
       else
         format.html { render :new, status: :unprocessable_entity }

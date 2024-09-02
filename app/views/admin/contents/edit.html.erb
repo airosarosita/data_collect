@@ -1,10 +1,14 @@
-<h1>Editing content</h1>
+<h1 class="text-2xl font-bold mb-6 text-center ml-60">Editing Content</h1>
 
-<%= render "form", content: @content %>
+<div class="flex justify-center">
+  <div class="w-full max-w-3xl bg-white border border-gray-200 rounded-lg shadow-md p-6 ml-60">
+    <%= render "form", content: @content %>
+  </div>
+</div>
 
 <br>
 
-<div>
-  <%= link_to "Show this content", @content %> |
-  <%= link_to "Back to content", content_path %>
+<div class="text-center">
+  <%= link_to "Show this content", @content, class: 'text-indigo-600 hover:text-indigo-900' %> |
+  <%= link_to "Back to content", admin_contents_path, class: 'text-blue-600 hover:text-blue-900' %>
 </div>

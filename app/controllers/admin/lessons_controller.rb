@@ -9,6 +9,7 @@ class Admin::LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
+    @contents = @lesson.contents
   end
 
   #GET /lesson/edit

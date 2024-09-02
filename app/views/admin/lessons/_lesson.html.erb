@@ -1,12 +1,32 @@
-<div class="w-full max-w-6xl p-6 flex justify-center mt-36">
-  <div id="<%= dom_id(lesson) %>" class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-    <h2 class="font-semibold text-indigo-700 text-lg mb-2"><%= lesson.title %></h2>
-    <div class="mt-4">
-      <%= link_to "Add Content", new_admin_lesson_content_path(@lesson), class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
-    </div>
-    <p> <%= lesson.context %></p>
+<div class="w-3/4 mx-auto p-8 mt-10 flex flex-col space-y-6">
+  <!-- Right side (Full-height container) -->
+  <div id="<%= dom_id(@lesson) %>" class="w-full border-4 border-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
     
-    <%= link_to "Edit this lesson", edit_admin_lesson_path(@lesson) %>
-    <%= button_to "Destroy this lesson", admin_lesson_path(@lesson), method: :delete%>
+    <!-- Top Right "Add Content" Button -->
+    <div class="flex justify-between items-start mb-6">
+      <h2 class="font-semibold text-indigo-800 text-2xl"><%= @lesson.title %></h2>
+      <%= link_to "Add Content", new_admin_lesson_content_path(@lesson), class: "bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200" %>
+    </div>
+
+    <!-- Lesson Context -->
+    <p class="text-gray-700 text-lg leading-relaxed"><%= @lesson.context %></p>
+
+    <!-- Contents Grid -->
+    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <% @contents.each do |content| %>
+        <div class="border border-gray-300 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-gray-50">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= content.title %></h3>
+          <p class="text-sm text-gray-600">Lesson: <%= content.lesson.title %></p>
+          <p class="text-sm text-gray-700"><%= truncate(content.content, length: 100) %></p>
+          <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Bottom Left Actions -->
+    <div class="mt-6 flex justify-end space-x-4">
+      <%= button_to "Destroy this lesson", admin_lesson_path(@lesson), method: :delete, class: "bg-red-600 text-white py-2 px-4 rounded hover:bg-red-500 transition duration-200" %>
+      <%= link_to "Back to lessons", admin_lessons_path, class: "text-blue-600 hover:underline transition duration-200" %>
+    </div>
   </div>
 </div>
