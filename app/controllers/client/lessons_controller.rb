@@ -6,6 +6,12 @@ class Client::LessonsController < ApplicationController
     @lesson = Lesson.new
   end
 
+  def show
+      @lesson = Lesson.find(params[:id])
+      @contents = @lesson.contents
+  end
+  
+
     # GET /lessons
     def index
       @lessons = Lesson.all

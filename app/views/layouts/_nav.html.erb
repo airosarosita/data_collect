@@ -75,26 +75,29 @@
     </div>
   </nav>
 
-  <!-- Sidebar and Main Content Wrapper -->
-  <div class="flex">
-    <!-- Sidebar -->
-    <% if user_signed_in? && current_user.admin? %>
-      <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
-        <div class="p-4">
-          <ul class="mt-4 space-y-4">
-            <li><%= link_to "Dashboard", admin_dashboards_path, class: "text-blue-800 font-semibold hover:underline" %></li>
-            <li><%= link_to "Test", admin_tests_path, class: "text-blue-800 hover:underline" %></li>
-            <li><%= link_to "Lesson", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
-          </ul>
-        </div>
+ <div class="flex">
+  <!-- Sidebar -->
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
+      <div class="p-4">
+        <ul class="mt-4 space-y-4">
+          <li><%= link_to "Dashboard", admin_dashboards_path, class: "text-blue-800 font-semibold hover:underline" %></li>
+          <li><%= link_to "Test", admin_tests_path, class: "text-blue-800 hover:underline" %></li>
+          <li><%= link_to "Lesson", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
+        </ul>
       </div>
-      <div class="flex-1 ml-1/5 main-content-with-sidebar p-6">
-    <% else %>
-      <div class="flex-1 main-content p-6">
-    <% end %>
-
-    
+    </div>
+  <% elsif user_signed_in? %>
+    <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
+      <div class="p-4">
+        <ul class="mt-4 space-y-4">
+          <li><%= link_to "Home", root_path, class: "text-blue-800 font-semibold hover:underline" %></li>
+          <li><%= link_to "Test", client_tests_path, class: "text-blue-800 hover:underline" %></li>
+           <li><%= link_to "Lesson", client_lessons_path, class: "text-blue-800 hover:underline" %></li>
+          </ul>
+      </div>
+    </div>
+  <% end %>
+  <div class="flex-1 ml-1/5 main-content-with-sidebar p-6">
   </div>
-</body>
-
-</html>
+</div>

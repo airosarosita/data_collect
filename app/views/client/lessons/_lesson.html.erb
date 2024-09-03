@@ -1,2 +1,27 @@
-<div id="<%= dom_id lesson %>">
+<div class="w-3/4 mx-auto p-8 mt-10 flex flex-col space-y-6 ml-60">
+<!-- Title -->
+<h1 class="text-2xl font-bold text-gray-900 ml-60">Pengenalan Cara Set-Up</h1>
+
+  <!-- Right side (Full-height container) -->
+  <div id="<%= dom_id(@lesson) %>" class="w-full border-4 border-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
+
+    <!-- Lesson Context -->
+    <p class="text-gray-700 text-lg leading-relaxed"><%= @lesson.context %></p>
+
+    <!-- Contents Grid -->
+    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <% @contents.each do |content| %>
+        <div class="border border-gray-300 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-gray-50">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2 "><%= content.title %></h3>
+          <p class="text-sm text-gray-700"><%= truncate(content.content, length: 30) %></p>
+          <%= link_to "View Content", client_content_path(content), class: "text-blue-500 hover:underline" %>
+          </div>
+      <% end %>
+    </div>
+
+    <!-- Bottom Left Actions -->
+    <div class="flex justify-end mt-6">
+    <%= link_to "Back to lessons", client_lessons_path, class: "text-blue-600 hover:underline transition duration-200" %>
+    </div>
+  </div>
 </div>

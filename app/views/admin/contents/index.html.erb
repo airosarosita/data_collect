@@ -1,27 +1,18 @@
-<h1 class="text-2xl font-bold mb-6 text-center ml-60">Contents</h1>
 <div class="flex justify-center">
-  <div class="overflow-x-auto w-full max-w-4xl ml-60">
-    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md divide-y divide-gray-200">
-      <thead class="bg-gray-50">
+  <div class="w-full max-w-6xl p-6">
 
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200 ml-60">
-        <% @contents.each do |content| %>
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 ml-60">
-              <%= content.title %>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 ml-60">
-              <%= content.lesson.title %>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium ml-60">
-              <%= link_to 'Show', admin_content_path(content), class: 'text-indigo-600 hover:text-indigo-900' %>
-              <%= link_to 'Edit', edit_admin_content_path(content), class: 'text-blue-600 hover:text-blue-900 ml-4' %>
-              <%= button_to 'Destroy', admin_content_path(content), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-600 hover:text-red-900 ml-4' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <div class="flex justify-between items-center mb-2 ml-10">
+      <h1 class="text-2xl font-bold text-gray-800 ml-60">Content</h1>
+      <%= link_to "Tambah", new_admin_content_path, class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-60">
+      <% @contents.each do |content| %>
+        <div class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+          <h2 class="font-bold text-indigo-700 text-lg mb-2"><%= content.title %></h2>
+          <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -1,49 +1,34 @@
-<div class="min-h-screen bg-gray-100">
-  <!-- Sidebar -->
-  <div class="flex flex-col md:flex-row">
-    <div class="w-full md:w-1/5 bg-gray-50 border-r border-gray-200">
-      <div class="p-4">
-        <h2 class="text-lg font-semibold text-blue-800">Dashboard</h2>
-        <ul class="mt-4 space-y-4">
-          <li><a href="#" class="text-blue-800 hover:underline">User Management</a></li>
-          <li><a href="#" class="text-blue-800 hover:underline">Test Management</a></li>
-        </ul>
-      </div>
+<div class="flex flex-col md:flex-row">
+  <div class="w-full md:w-1/5">
+    <!-- Sidebar atau navigasi bisa ditempatkan di sini -->
+  </div>
+
+  <!-- Main content -->
+  <div class="flex-1 p-4 md:p-8">
+    <div class="text-white p-6 rounded-lg shadow-md mb-6" style="background-color: #221764;">
+      <h1 class="text-2xl font-bold">SELAMAT DATANG, USER</h1>
+      <p class="mt-2">Silahkan Gunakan Menu Sebelah Kiri Untuk Mengakses Materi Pembelajaran</p>
     </div>
 
-    <!-- Main content -->
-    <div class="flex-1 p-4 md:p-8">
-      <div class="text-white p-6 rounded-lg shadow-md mb-6" style="background-color: #221764;>
-        <h1 class="text-2xl font-bold">SELAMAT DATANG, ADMIN</h1>
-        <p class="mt-2">Silahkan Gunakan Menu Sebelah Kiri Untuk Mengelola Website</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+        <div class="text-center">
+          <img src="<%= asset_path 'gambar1.png' %>" alt="Available Courses" class="h-12 w-12 mb-2 mx-auto">
+          <p class="font-semibold text-lg">Number of Available Courses</p>
+        </div>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar1.png' %>" alt="Registered Users" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">Number of Registered Users</p>
-          </div>
+      <div class="bg-gray-400 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+        <div class="text-center">
+          <img src="<%= asset_path 'gambar2.png' %>" alt="Completed Lessons" class="h-12 w-12 mb-2 mx-auto">
+          <p class="font-semibold text-lg">Number of Lessons Completed</p>
         </div>
-        <div class="bg-gray-400 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar2.png' %>" alt="Tests Completed" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">Number of Tests Completed</p>
-          </div>
-        </div>
-        <div class="bg-purple-600 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar3.png' %>" alt="Learning Progression" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">User Learning Progression</p>
-          </div>
+      </div>
+      <div class="bg-purple-600 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
+        <div class="text-center">
+          <img src="<%= asset_path 'gambar3.png' %>" alt="Achievements" class="h-12 w-12 mb-2 mx-auto">
+          <p class="font-semibold text-lg">User Achievements</p>
         </div>
       </div>
     </div>
-    </div> 
-  </div>   
-  
-  <!-- Footer -->
-  <footer class="mt-8 text-center text-gray-600 text-sm">
-    © 2024 <span class="font-semibold text-blue-800">E-Learning System</span> Football Data Collect
-  </footer>
+  </div>
 </div>

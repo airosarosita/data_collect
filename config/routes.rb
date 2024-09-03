@@ -27,7 +27,21 @@ Rails.application.routes.draw do
   
 
    # Client routes
-   resources :contents
+   namespace :client do
+    resources :tests
+    resources :contents
+    resource :dashboard, only: [:show]
+
+    resources :lessons do
+      resources :contents
+    end
+     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
+  
+
+    
+     resources :lessons, only: [:index, :show]
+  end
+  
    
    # Add other client routes here
   
