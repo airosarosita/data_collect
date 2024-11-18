@@ -1,8 +1,11 @@
 class Admin::LessonsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :set_lesson, only: %i[ show edit update destroy ]
+
   # Other actions ...
 
   # GET /lessons/new
+ 
+  
   def new
     @lesson = Lesson.new
   end
@@ -23,7 +26,6 @@ class Admin::LessonsController < ApplicationController
   end
 
   def destroy
-    @lesson = Lesson.find(params[:id])
     @lesson.destroy
     respond_to do |format|
       format.html { redirect_to admin_lessons_path, notice: 'Lesson was successfully destroyed.' }
@@ -35,6 +37,7 @@ class Admin::LessonsController < ApplicationController
     # GET /lessons
     def index
       @lessons = Lesson.all
+      @tests =Test.all
     end
 
   # POST /lessons or /lessons.json
@@ -44,7 +47,7 @@ class Admin::LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to admin_lessons_path, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to admin_lessons_url, notice: 'Lesson was successfully created.' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -54,10 +57,10 @@ class Admin::LessonsController < ApplicationController
   end
 
   def update
-    @lesson = Lesson.find(params[:id])
+    
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to admin_lesson_path(@lesson), notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to admin_lesson_url(@lesson), notice: 'Lesson was successfully updated.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -67,6 +70,9 @@ class Admin::LessonsController < ApplicationController
   end
 
   private
+  def set_lesson
+    @lesson = Lesson.find(params[:id])
+  end
 
   # Only allow a list of trusted parameters through.
   def lesson_params

@@ -24,16 +24,15 @@
 
 <body>
   <!-- Top Navigation Bar -->
-  <nav class="fixed top-0 left-0 w-full" style="background-color: #221764;>
+  <nav class="fixed top-0 left-0 w-full" style="background-color: #ffffff;>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16 items-center">
+      <div class="flex justify-between h-16 items-center rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
         <!-- Logo -->
-        <div class="text-1xl text-white font-bold">
-          <%= link_to root_path, class: "hover:font-bold text-white flex items-center" do %>
+        <div class="text-1xl text-black font-bold">
+          <%= link_to root_path, class: "hover:font-bold text-black flex items-center" do %>
             <img src="<%= asset_path('logo1.png') %>" alt="Logo" class="h-13">
             <div>
               <span class="block">E-Learning System</span>
-              <span class="block text-xs font-normal">Football Data Collect</span>
             </div>
           <% end %>
         </div>      
@@ -43,61 +42,33 @@
           <% if user_signed_in? %>
             <% if current_user.admin? %>
               <!-- Admin Navbar -->
-              <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <%= link_to edit_user_registration_path, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-user"></i> Profile
               <% end %>
-              <%= link_to admin_dashboards_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <%= link_to admin_dashboards_path, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-cogs"></i> Admin Dashboard
               <% end %>
-              <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "text-black hover:bg-wihte-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-sign-out-alt"></i> Logout
               <% end %>
             <% else %>
               <!-- Client Navbar -->
-              <%= link_to edit_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <%= link_to edit_user_registration_path, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-user"></i> Profile
               <% end %>
-              <%= link_to destroy_user_session_path, method: :delete, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+              <%= link_to destroy_user_session_path, method: :delete, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
                 <i class="fas fa-sign-out-alt"></i> Logout
               <% end %>
             <% end %>
           <% else %>
             <!-- Guest Navbar -->
-            <%= link_to new_user_session_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <%= link_to new_user_session_path, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
               <i class="fas fa-sign-in-alt"></i> Login
             <% end %>
-            <%= link_to new_user_registration_path, class: "text-white hover:bg-blue-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
+            <%= link_to new_user_registration_path, class: "text-black hover:bg-white-600 rounded-lg px-3 py-2 transition-colors duration-300" do %>
               <i class="fas fa-user-plus"></i> Sign up
             <% end %>
           <% end %>
         </div>
       </div>
     </div>
-  </nav>
-
- <div class="flex">
-  <!-- Sidebar -->
-  <% if user_signed_in? && current_user.admin? %>
-    <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
-      <div class="p-4">
-        <ul class="mt-4 space-y-4">
-          <li><%= link_to "Dashboard", admin_dashboards_path, class: "text-blue-800 font-semibold hover:underline" %></li>
-          <li><%= link_to "Test", admin_tests_path, class: "text-blue-800 hover:underline" %></li>
-          <li><%= link_to "Lesson", admin_lessons_path, class: "text-blue-800 hover:underline" %></li>
-        </ul>
-      </div>
-    </div>
-  <% elsif user_signed_in? %>
-    <div class="fixed top-16 left-0 w-1/5 bg-gray-50 border-r border-gray-200 h-screen sidebar">
-      <div class="p-4">
-        <ul class="mt-4 space-y-4">
-          <li><%= link_to "Home", root_path, class: "text-blue-800 font-semibold hover:underline" %></li>
-          <li><%= link_to "Test", client_tests_path, class: "text-blue-800 hover:underline" %></li>
-           <li><%= link_to "Lesson", client_lessons_path, class: "text-blue-800 hover:underline" %></li>
-          </ul>
-      </div>
-    </div>
-  <% end %>
-  <div class="flex-1 ml-1/5 main-content-with-sidebar p-6">
-  </div>
-</div>

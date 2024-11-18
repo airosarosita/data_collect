@@ -1,20 +1,43 @@
-<div class="flex justify-center items-center min-h-screen ml-60">
+<div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-4xl bg-white p-8 rounded shadow-md border border-gray-300">
     <%= form_with(model: [@lesson, @content], url: admin_lesson_contents_path(@lesson), local: true, html: { multipart: true }) do |form| %>
-      
+
+      <!-- Title Input -->
       <div class="field mb-4">
         <%= form.text_field :title, placeholder: "Title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
 
+      <!-- Rich Text Editor for Content -->
       <div class="field mb-4">
         <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Content</label>
         <%= form.rich_text_area :content, class: "w-full bg-gray-100 rounded border border-gray-300 p-2" %>
       </div>
 
+      <!-- Upload Photo -->
+      <div class="field mb-4">
+        <label for="photo" class="block text-gray-700 text-sm font-bold mb-2">Upload Photo</label>
+        <%= form.file_field :photo, accept: "image/*", class: "w-full bg-gray-100 rounded border border-gray-300 p-2" %>
+      </div>
+
+      <!-- Upload Audio -->
+      <div class="field mb-4">
+        <label for="audio" class="block text-gray-700 text-sm font-bold mb-2">Upload Audio</label>
+        <%= form.file_field :audio, accept: "audio/*", class: "w-full bg-gray-100 rounded border border-gray-300 p-2" %>
+      </div>
+
+      <!-- Upload Video -->
+      <div class="field mb-4">
+        <label for="video" class="block text-gray-700 text-sm font-bold mb-2">Upload Video</label>
+        <%= form.file_field :video, accept: "video/*", class: "w-full bg-gray-100 rounded border border-gray-300 p-2" %>
+      </div>
+
+      <!-- Action Buttons -->
       <div class="actions flex justify-end space-x-2">
-        <%= form.submit "Save", class: "bg-indigo-800 text-white font-semibold py-2 px-4 rounded-lg" %>
+        <%= form.submit "Save Lesson", class: "bg-green-600 text-white font-semibold py-2 px-4 rounded-lg" %>
         <%= link_to 'Batal', admin_lesson_path(@lesson), class: "bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg" %>
       </div>
+
     <% end %>
   </div>
 </div>
+

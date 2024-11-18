@@ -3,7 +3,7 @@ class Client::DashboardsController < ApplicationController
 
   # GET /dashboards or /dashboards.json
   def index
-    
+    @tests = Test.all
   end
 
   # GET /dashboards/1 or /dashboards/1.json

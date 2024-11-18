@@ -1,34 +1,58 @@
-<div class="flex flex-col md:flex-row">
-    <div class="w-full md:w-1/5">
-    </div>
+<div class="flex justify-center" style="background-color: #EAEAEA; width: 100%;">
+    <!-- Adjusted gray background to match the image -->
+    <div class="w-full max-w-6xl px-4" style="background-color: #EAEAEA;">
+        <!-- Adjusted white background to match the image -->
 
-    <!-- Main content -->
-    <div class="flex-1 p-4 md:p-8">
-      <div class="text-white p-6 rounded-lg shadow-md mb-6" style="background-color: #221764;">
-        <h1 class="text-2xl font-bold">SELAMAT DATANG, ADMIN</h1>
-        <p class="mt-2">Silahkan Gunakan Menu Sebelah Kiri Untuk Mengelola Website</p>
-      </div>
+        <!-- Lesson Section -->
+        <div class="flex justify-between items-center mb-6 mt-8">
+            <div class="flex items-center w-full">
+                <h1 class="text-2xl font-bold text-gray-500">Lesson</h1>
+                <div class="flex-grow mx-3 border-t border-gray-300"></div> <!-- Line -->
+            </div>
+            <%= link_to "Tambah", new_admin_lesson_path, class: "bg-white text-black py-2 px-4 rounded hover:bg-gray-300 transition-colors duration-200" %>
+            <!-- Add button with white background and black text -->
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar1.png' %>" alt="Registered Users" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">Number of Registered Users</p>
-          </div>
+        <!-- Check if @lessons is not empty -->
+        <% if @lessons.present? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+            <% @lessons.each do |lesson| %>
+            <%= link_to admin_lesson_path(lesson), class: "block border border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white" do %>
+            <!-- Adjusted to white background -->
+            <%= image_tag "Gelos.png", class: "w-full h-48 object-cover mb-2" %>
+            <h2 class="font-bold text-black text-lg mb-2"><%= lesson.title %></h2> <!-- Adjusted to black text for better contrast -->
+            <% end %>
+            <% end %>
         </div>
-        <div class="bg-gray-400 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar2.png' %>" alt="Tests Completed" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">Number of Tests Completed</p>
-          </div>
+        <% else %>
+        <p class="text-gray-500">No lessons available.</p>
+        <% end %>
+
+        <!-- Test Section -->
+        <div class="flex justify-between items-center mb-6 mt-8">
+            <div class="flex items-center w-full">
+                <h1 class="text-2xl font-bold text-gray-500">Test</h1>
+                <div class="flex-grow mx-3 border-t border-gray-300"></div> <!-- Line -->
+            </div>
+            <%= link_to "Tambah", new_admin_test_path, class: "bg-white text-black py-2 px-4 rounded hover:bg-gray-300 transition-colors duration-200" %>
+            <!-- Add button with white background and black text -->
         </div>
-        <div class="bg-purple-600 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-          <div class="text-center">
-            <img src="<%= asset_path 'gambar3.png' %>" alt="Learning Progression" class="h-12 w-12 mb-2 mx-auto">
-            <p class="font-semibold text-lg">User Learning Progression</p>
-          </div>
+
+        <!-- Check if @tests is not empty -->
+        <% if @tests.present? %>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+            <% @tests.each do |test| %>
+            <%= link_to admin_test_path(test), class: "block border border-gray-300 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 bg-white" do %>
+            <!-- Adjusted to white background -->
+            <%= image_tag "Tests.png", class: "w-full h-48 object-cover mb-2" %>
+            <h2 class="font-bold text-black text-lg mb-2"><%= test.title %></h2> <!-- Adjusted to black text for better contrast -->
+            <span class="bg-green-600 text-white py-1 px-2 rounded-full text-sm">Test</span>
+            <% end %>
+            <% end %>
         </div>
-      </div>
+        <% else %>
+        <p class="text-gray-500">No tests available.</p>
+        <% end %>
+
     </div>
-  </div>
 </div>

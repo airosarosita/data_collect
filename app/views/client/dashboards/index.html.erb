@@ -1,34 +1,28 @@
-<div class="flex flex-col md:flex-row">
-  <div class="w-full md:w-1/5">
-    <!-- Sidebar atau navigasi bisa ditempatkan di sini -->
-  </div>
+<div class="flex flex-col md:flex-row min-h-screen bg-white">
+    <!-- Main content with welcome message and test button -->
+    <div class="flex-1 p-4 md:p-8">
+        <div class="text-left p-6 rounded-lg mb-6">
+            <h1 class="text-3xl font-bold mb-4">
+                Selamat Datang di <span style="color: #23A50A;">Lapangbola</span> Football Data Collect!
+            </h1>
+            <p class="text-lg mb-4">
+                Ikuti tes pemahaman, dan kembangkan diri Anda menjadi seorang data collector sepak bola yang handal.
+            </p>
+            <!-- Link to start the test, assuming you have a test_path -->
+            <%= link_to 'Mulai Test...', client_test_path(@tests), class: 'font-semibold text-lg', style: 'color: #23A50A;' %>
 
-  <!-- Main content -->
-  <div class="flex-1 p-4 md:p-8">
-    <div class="text-white p-6 rounded-lg shadow-md mb-6" style="background-color: #221764;">
-      <h1 class="text-2xl font-bold">SELAMAT DATANG, USER</h1>
-      <p class="mt-2">Silahkan Gunakan Menu Sebelah Kiri Untuk Mengakses Materi Pembelajaran</p>
+        </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-        <div class="text-center">
-          <img src="<%= asset_path 'gambar1.png' %>" alt="Available Courses" class="h-12 w-12 mb-2 mx-auto">
-          <p class="font-semibold text-lg">Number of Available Courses</p>
+    <!-- Image section (right side for the player image) -->
+    <div class="hidden md:block w-full md:w-1/2 flex items-center justify-center">
+        <div class="relative">
+            <!-- Circle decoration behind the player using the uploaded image -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <img src="<%= asset_path 'gambar_4.png' %>" alt="Green Circle" class="w-96 h-96">
+            </div>
+            <!-- Player image -->
+            <img src="<%= asset_path 'gambar3.png' %>" alt="Football Player" class="relative z-5 h-auto">
         </div>
-      </div>
-      <div class="bg-gray-400 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-        <div class="text-center">
-          <img src="<%= asset_path 'gambar2.png' %>" alt="Completed Lessons" class="h-12 w-12 mb-2 mx-auto">
-          <p class="font-semibold text-lg">Number of Lessons Completed</p>
-        </div>
-      </div>
-      <div class="bg-purple-600 text-white p-6 rounded-lg shadow-md flex items-center justify-center">
-        <div class="text-center">
-          <img src="<%= asset_path 'gambar3.png' %>" alt="Achievements" class="h-12 w-12 mb-2 mx-auto">
-          <p class="font-semibold text-lg">User Achievements</p>
-        </div>
-      </div>
     </div>
-  </div>
 </div>

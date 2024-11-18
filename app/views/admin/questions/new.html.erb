@@ -1,9 +1,31 @@
-<h1>New question</h1>
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-4xl bg-white p-8 rounded shadow-md border border-gray-300">
+        <h1 class="text-2xl font-semibold mb-6 text-gray-700">Buat Pertanyaan Baru</h1>
+        <%= form_for [@question] do |f| %>
+        <%= link_to 'New Question', new_admin_question_path(@question) %>
+        <% end %>
 
-<%= render "form", question: @question %>
+        <!-- Pilihan Jawaban -->
+        <div class="mb-4">
+            <h2 class="text-lg font-semibold mb-2 text-gray-700">Pilihan Jawaban</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <% 4.times do |i| %>
+                <div class="p-4 bg-gray-50 border rounded">
+                    <%= form.text_field "answers[#{i}]", placeholder: "Jawaban #{i + 1}", class: "w-full p-2 bg-white border rounded focus:ring focus:ring-green-300" %>
+                    <div class="mt-2 flex items-center">
+                        <%= form.radio_button :correct_answer, i, class: "form-radio text-green-600" %>
+                        <span class="ml-2 text-sm text-gray-700">Benar</span>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to questions", questions_path %>
+        <!-- Tombol Simpan dan Batal -->
+        <div class="flex justify-end space-x-4">
+            <%= form.submit "Simpan Pertanyaan", class: "bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500" %>
+            <%= link_to "Batal", admin_test_path(@test), class: "bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-400" %>
+        </div>
+        <% end %>
+    </div>
 </div>

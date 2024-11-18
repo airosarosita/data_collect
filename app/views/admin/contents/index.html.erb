@@ -1,18 +1,53 @@
-<div class="flex justify-center">
-  <div class="w-full max-w-6xl p-6">
+<div class="flex justify-center bg-gray-100"> <!-- Ubah latar belakang -->
+  <div class="w-full max-w-6xl px-4 bg-white"> <!-- Centering container dan latar belakang putih -->
 
-    <div class="flex justify-between items-center mb-2 ml-10">
-      <h1 class="text-2xl font-bold text-gray-800 ml-60">Content</h1>
-      <%= link_to "Tambah", new_admin_content_path, class: "bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+    <!-- Lesson Section -->
+    <div class="flex justify-between items-center mb-6 mt-8">
+      <div class="flex items-center w-full">
+        <h1 class="text-2xl font-bold text-gray-800">Lesson</h1>
+        <div class="flex-grow mx-3 border-t border-gray-300"></div> <!-- Line -->
+      </div>
+      <%= link_to "Tambah", new_admin_lesson_path, class: "bg-white-900 text-black py-2 px-4 rounded hover:bg-white-700" %> <!-- Add button -->
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ml-60">
-      <% @contents.each do |content| %>
-        <div class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-          <h2 class="font-bold text-indigo-700 text-lg mb-2"><%= content.title %></h2>
-          <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
-        </div>
-      <% end %>
+    <!-- Check if @lessons is not empty -->
+    <% if @lessons.present? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+        <% @lessons.each do |lesson| %>
+          <%= link_to admin_lesson_path(lesson), class: "block border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" do %>
+            <%= image_tag "Gelos.png", class: "w-full h-48 object-cover mb-2" %>
+            <h2 class="font-bold text-indigo-500 text-lg mb-2"><%= lesson.title %></h2>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">No lessons available.</p>
+    <% end %>
+
+    <!-- Test Section -->
+    <div class="flex justify-between items-center mb-6 mt-8">
+      <div class="flex items-center w-full">
+        <h1 class="text-2xl font-bold text-gray-800">Test</h1>
+        <div class="flex-grow mx-3 border-t border-gray-300"></div> <!-- Line -->
+      </div>
+      <%= link_to "Tambah", new_admin_test_path, class: "bg-white-900 text-black py-2 px-4 rounded hover:bg-white-700" %> <!-- Add button -->
     </div>
+
+    <!-- Check if @tests is not empty -->
+    <% if @tests.present? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+        <% @tests.each do |test| %>
+          <%= link_to admin_test_path(test), class: "block border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300" do %>
+            <%= image_tag "Gelos.png", class: "w-full h-48 object-cover mb-2" %>
+            <h2 class="font-bold text-indigo-500 text-lg mb-2"><%= test.title %></h2>
+            <span class="bg-green-600 text-white py-1 px-2 rounded-full text-sm">Test</span>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="text-gray-500">No tests available.</p>
+    <% end %>
+
   </div>
 </div>
+

@@ -1,9 +1,44 @@
-<h1>New test</h1>
+<h1 class="text-lg font-bold text-gray-900 mb-2 text-center">Test</h1>
 
-<%= render "form", test: @test %>
+<div class="flex justify-center items-center min-h-screen">
+    <div class="w-full max-w-4xl bg-white p-8 rounded shadow-md border border-gray-300">
 
-<br>
+        <%= form_with model: [:admin, @item], local: true do |form| %>
 
-<div>
-  <%= link_to "Back to tests", new_admin_tests_path %>
+        <!-- Image and Title Field (Side by Side) -->
+        <div class="field mb-4 flex items-center space-x-4">
+            <!-- Image Upload Field (With Icon) -->
+            <div class="relative w-12 h-12 flex items-center justify-center bg-green-100 rounded">
+                <label for="test_image" class="absolute inset-0 flex items-center justify-center cursor-pointer">
+                    <%= image_tag('Vector.png', alt: 'Image Icon', class: 'w-8 h-8') %>
+                </label>
+                <!-- Display existing image if available -->
+                <% if @test.image.attached? %>
+                <%= image_tag @test.image, alt: 'Test Image', class: 'w-12 h-12 rounded' %>
+                <% end %>
+                <%= form.file_field :image, id: "test_image", class: "hidden" %>
+            </div>
+
+            <!-- Title Input -->
+            <div class="flex-grow">
+                <%= form.text_field :title, value: @test.title, placeholder: "Masukkan Judul...", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+        </div>
+
+        <!-- Action Buttons as a Link -->
+        <div class="actions flex justify-center mt-4">
+            <%= link_to 'SAVE', admin_tests_path, class: "text-white font-bold py-2 px-8 rounded-lg hover:bg-green-600", style: "background-color: #23A50A;" %>
+        </div>
+
+        <!-- Link kembali ke daftar test -->
+        <div class="flex justify-center mt-4">
+            <%= link_to admin_tests_path, class: 'inline-flex items-center bg-gray-200 text-black font-semibold py-2 px-8 rounded-lg hover:bg-gray-300 transition-colors duration-300' do %>
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to Tests
+            <% end %>
+        </div>
+        <% end %>
+    </div>
 </div>

@@ -1,16 +1,41 @@
-<h1 class="text-lg font-bold text-gray-900 mb-2 ml-60 text-center">Tambah Lesson Baru</h1>
+<h1 class="text-lg font-bold text-gray-900 mb-2 text-center">Tambah Lesson Baru</h1>
 
-<div class="flex justify-center items-center min-h-screen ml-60">
+<div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-4xl bg-white p-8 rounded shadow-md border border-gray-300">
-    <%= form_with(model: @lesson, url: admin_lessons_path, local: true) do |form| %>
 
-      <div class="field mb-4">
-        <%= form.text_field :title, placeholder: "Title", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= form_with(model: @lesson, url: admin_lessons_path, local: true, multipart: true) do |form| %>
+      
+      <!-- Image and Title Field (Side by Side) -->
+      <div class="field mb-4 flex items-center space-x-4">
+        <!-- Image Upload Field (With Icon) -->
+        <div class="relative w-12 h-12 flex items-center justify-center bg-green-100 rounded">
+          <label for="lesson_image" class="absolute inset-0 flex items-center justify-center cursor-pointer">
+            <%= image_tag('Vector.png', alt: 'Image Icon', class: 'w-8 h-8') %>
+          </label>
+          <%= form.file_field :image, id: "lesson_image", class: "hidden" %>
+        </div>
+
+        <!-- Title Input -->
+        <div class="flex-grow">
+          <%= form.text_field :title, placeholder: "Masukkan Judul...", class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+        </div>
       </div>
-      <div class="actions flex justify-end space-x-2">
-        <%= form.submit "Save", class: "bg-indigo-800 text-white font-semibold py-2 px-4 rounded-lg mr-4" %>
-        <%= link_to 'Batal', admin_lessons_path, class: "bg-indigo-800 text-white font-semibold py-2 px-4 rounded-lg" %>
-      </div>
+
+      <!-- Action Buttons -->
+<div class="actions flex justify-center mt-4">
+  <%= form.submit "SAVE", class: "text-white font-bold py-2 px-8 rounded-lg hover:bg-green-600", style: "background-color: #23A50A;" %>
+</div>
+
+      <!-- Link kembali ke daftar lesson -->
+      <div class="flex justify-center mt-4">
+     <%= link_to admin_lessons_path, class: 'inline-flex items-center bg-gray-200 text-black font-semibold py-2 px-8 rounded-lg hover:bg-gray-300 transition-colors duration-300' do %>
+    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+    Back to Lessons
+  <% end %>
+</div>
     <% end %>
   </div>
 </div>
+

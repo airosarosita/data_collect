@@ -52,7 +52,7 @@ class Client::ContentsController < ApplicationController
     @content.destroy!
 
     respond_to do |format|
-      format.html { redirect_to contents_url, notice: "Content was successfully destroyed." }
+      format.html { redirect_to contents_url}
       format.json { head :no_content }
     end
   end

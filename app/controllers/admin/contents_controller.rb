@@ -4,15 +4,20 @@ class Admin::ContentsController < ApplicationController
 
 
   def index
+    @lessons = Lesson.all
+    @tests = Test.all
     @contents = Content.all
   end
 
   def show
+    @lesson = Lesson.find_by(params[:id])
+    @content = @lesson.contents.first
     @content = Content.find(params[:id])
   end
 
   def edit
-    
+    @lesson = Lesson.find(params[:lesson_id])
+    @content = Content.find(params[:id])
   end
   
   # GET /contents/new

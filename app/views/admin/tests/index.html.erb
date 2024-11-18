@@ -1,15 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<div class="max-w-4xl mx-auto p-6">
+    <!-- Notice message -->
+    <% if notice %>
+    <p class="text-green-600 mb-4"><%= notice %></p>
+    <% end %>
 
-<h1>Assignment</h1>
+    <!-- Title -->
+    <h1 class="text-4xl font-semibold mb-6 text-center">Assignments</h1>
 
-    <%= render @tests %>
-<div id="tests">
-  <% @tests.each do |test| %>
-    <%= render test %>
-    <p>
-      <%= link_to "Show this test", test %>
-    </p>
-  <% end %>
+    <!-- Render tests -->
+    <div id="tests" class="space-y-6">
+        <% @tests.each do |test| %>
+        <div class="border p-4 rounded-lg shadow-md bg-white">
+            <%= render test %>
+            <div class="flex justify-between items-center mt-4">
+                <%= link_to "Show this test", admin_test_path(test), class: "text-blue-600 hover:text-blue-800" %>
+            </div>
+        </div>
+        <% end %>
+    </div>
+
+    <!-- New test link -->
+    <div class="mt-6 text-center">
+        <%= link_to "Create New Test", new_admin_test_path, class: "inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+    </div>
 </div>
-
-<%= link_to "New test", new_admin_test_path %>

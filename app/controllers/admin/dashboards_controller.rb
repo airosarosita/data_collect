@@ -3,7 +3,8 @@ class Admin::DashboardsController < ApplicationController
 
   # GET /dashboards or /dashboards.json
   def index
-    
+    @lessons = Lesson.all
+    @tests = Test.all
   end
 
   # GET /dashboards/1 or /dashboards/1.json
@@ -13,6 +14,8 @@ class Admin::DashboardsController < ApplicationController
   # GET /dashboards/new
   def new
     @dashboard = Dashboard.new
+    @tests = Test.new
+    @lessons = Lesson.new
   end
 
   # GET /dashboards/1/edit

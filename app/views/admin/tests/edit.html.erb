@@ -1,10 +1,26 @@
-<h1>Editing test</h1>
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Edit Test</h2>
 
-<%= render "form", test: @test %>
+    <%= form_with(model: @test, url: admin_test_path(@test), method: :patch, local: true) do |form| %>
+    <div class="space-y-6">
+        <div class="flex flex-col">
+            <%= form.label :title, "Test Title", class: "text-lg font-medium text-gray-700" %>
+            <%= form.text_field :title, class: "mt-2 p-3 border border-gray-300 rounded-md w-full focus:ring-2 focus:ring-blue-400" %>
+        </div>
 
-<br>
+        <div class="flex flex-col">
+            <%= form.label :description, "Description", class: "text-lg font-medium text-gray-700" %>
+            <%= form.text_area :description, class: "mt-2 p-3 border border-gray-300 rounded-md w-full focus:ring-2 focus:ring-blue-400", rows: 4 %>
+        </div>
 
-<div>
-  <%= link_to "Show this test", @test %> |
-  <%= link_to "Back to tests", tests_path %>
+        <div class="flex space-x-4 justify-end">
+            <%= form.submit "Update Test", class: "px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
+        </div>
+    </div>
+    <% end %>
+
+    <div class="flex justify-between items-center mt-6">
+        <%= link_to "Show this test", admin_test_path(@test), class: "text-blue-600 hover:text-blue-800" %> |
+        <%= link_to "Back to tests", admin_tests_path, class: "text-gray-600 hover:text-gray-800" %>
+    </div>
 </div>

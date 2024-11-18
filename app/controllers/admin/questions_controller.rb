@@ -1,70 +1,67 @@
 class Admin::QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update destroy ]
+    before_action :set_question, only: %i[show edit update destroy]
+    before_action :set_test, only: [:new, :create, :edit, :update, :destroy]
 
-  # GET /questions or /questions.json
-  def index
-    @questions = Question.all
-  end
+    # GET /tests/:test_id/questions
+    def index
+      @questions = @test.questions.all
+    end
 
-  # GET /questions/1 or /questions/1.json
-  def show
-  end
+    # GET /questions/:id
+    def show
+      # @question sudah di-set dengan before_action :set_question
+    end
 
-  # GET /questions/new
-  def new
-    @question = Question.new
-  end
+    # GET /tests/:test_id/questions/new
+    def new
+      @question = @test.questions.new
+    end
 
-  # GET /questions/1/edit
-  def edit
-  end
+    # GET /questions/:id/edit
+    def edit
+      # @question sudah di-set dengan before_action :set_question
+    end
 
-  # POST /questions or /questions.json
-  def create
-    @question = Question.new(question_params)
-
-    respond_to do |format|
+    # POST /tests/:test_id/questions
+    def create
+      @question = @test.questions.build(question_params)
       if @question.save
-        format.html { redirect_to question_url(@question), notice: "Question was successfully created." }
-        format.json { render :show, status: :created, location: @question }
+        redirect_to admin_test_path(@test), notice: "Question was successfully created."
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        render :new, status: :unprocessable_entity
       end
     end
-  end
 
-  # PATCH/PUT /questions/1 or /questions/1.json
-  def update
-    respond_to do |format|
+    # PATCH/PUT /questions/:id
+    def update
       if @question.update(question_params)
-        format.html { redirect_to question_url(@question), notice: "Question was successfully updated." }
-        format.json { render :show, status: :ok, location: @question }
+        redirect_to admin_test_path(@test), notice: "Question was successfully updated."
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
+        render :edit, status: :unprocessable_entity
       end
     end
-  end
 
-  # DELETE /questions/1 or /questions/1.json
-  def destroy
-    @question.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
-      format.json { head :no_content }
+    # DELETE /questions/:id
+    def destroy
+      @question.destroy
+      redirect_to admin_test_path(@test), notice: "Question was successfully destroyed."
     end
-  end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
+    private
+
+    # Set @test for every action that needs it
+    def set_test
+      @test = Test.find_by(id: params[:test_id])
+      redirect_to admin_tests_path, alert: 'Test not found' if @test.nil?
+    end
+
+    # Set @question for actions that need it (show, edit, update, destroy)
     def set_question
-      @question = Question.find(params[:id])
+      @question = @test.questions.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Strong parameters to ensure only the allowed parameters are accepted
     def question_params
-      params.fetch(:question, {})
+      params.require(:question).permit(:question, answers: [],)
     end
-end
+  end

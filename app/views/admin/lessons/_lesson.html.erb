@@ -1,31 +1,50 @@
-<div class="w-3/4 mx-auto p-8 mt-10 flex flex-col space-y-6">
-  <!-- Right side (Full-height container) -->
-  <div id="<%= dom_id(@lesson) %>" class="w-full border-4 border-gray-200 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 bg-white">
+<div class="w-full">
+  <!-- Container with shadow and rounded edges -->
+  <div id="<%= dom_id(@lesson) %>" class="w-full bg-gray-100 p-6 rounded-lg shadow-lg hover:shadow-xl duration-300">
     
-    <!-- Top Right "Add Content" Button -->
-    <div class="flex justify-between items-start mb-6">
-      <h2 class="font-semibold text-indigo-800 text-2xl"><%= @lesson.title %></h2>
-      <%= link_to "Add Content", new_admin_lesson_content_path(@lesson), class: "bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-200" %>
+    <!-- Header Section with Title and Add Button -->
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="font-bold text-xl text-gray-800">GLOSARIUM</h2>
+      <%= link_to "Tambah", new_admin_lesson_content_path(@lesson), class: "bg-gray-200 text-black py-2 px-4 rounded hover:bg-gray-300 transition duration-200" %>
     </div>
 
-    <!-- Lesson Context -->
-    <p class="text-gray-700 text-lg leading-relaxed"><%= @lesson.context %></p>
-
-    <!-- Contents Grid -->
-    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <!-- List of Contents -->
+    <div class="space-y-4">
       <% @contents.each do |content| %>
-        <div class="border border-gray-300 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 bg-gray-50">
-          <h3 class="text-lg font-semibold text-gray-900 mb-2"><%= content.title %></h3>
-          <p class="text-sm text-gray-700"><%= truncate(content.content, length: 30) %></p>
-          <%= link_to "View Content", admin_content_path(content), class: "text-blue-500 hover:underline" %>
+        <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm">
+          
+          <!-- Content Image and Title Section wrapped in a link to make it clickable -->
+          <div class="flex items-center">
+            <%= link_to admin_content_path(content), class: "flex items-center" do %>
+              <% if content.image.attached? %>
+                <%= image_tag(content.image, class: "h-16 w-16 object-cover rounded") %>
+              <% else %>
+                <%= image_tag "Gelos.png", class: "h-16 w-16 object-cover rounded" %>
+              <% end %>
+              <h3 class="ml-4 font-bold text-lg text-gray-800"><%= content.title %></h3>
+            <% end %>
+          </div>
+
+          <!-- Action Buttons Section -->
+          <div class="flex space-x-4">
+            <!-- Edit Button -->
+            <%= link_to edit_admin_content_path(content), class: "text-blue-600 hover:text-blue-800" do %>
+              <%= image_tag 'edit.png', class: "h-6 w-6" %>
+            <% end %>
+            <!-- Delete Button -->
+            <%= button_to admin_content_path(content), method: :delete, data: { confirm: "Are you sure?" }, class: "text-red-600 hover:text-red-800" do %>
+              <%= image_tag 'delete.png', class: "h-6 w-6" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>
 
-    <!-- Bottom Left Actions -->
+    <!-- Bottom Navigation Links -->
     <div class="mt-6 flex justify-end space-x-4">
-      <%= button_to "Destroy this lesson", admin_lesson_path(@lesson), method: :delete, class: "bg-red-600 text-white py-2 px-4 rounded hover:bg-red-500 transition duration-200" %>
       <%= link_to "Back to lessons", admin_lessons_path, class: "text-blue-600 hover:underline transition duration-200" %>
+      <%= link_to "Edit", edit_admin_lesson_path(@lesson), class: "text-blue-600 hover:underline transition duration-200" %>
+      <%= button_to "Destroy this lesson", admin_lesson_path(@lesson), method: :delete, class: "text-blue-600 hover:underline transition duration-200" %>
     </div>
   </div>
 </div>

@@ -11,11 +11,18 @@ Rails.application.routes.draw do
     resources :tests
     resources :contents
     resource :dashboard, only: [:show]
+    resources :questions, only: [:new, :create]
+    resources :lessons, only: [:new, :show, :index, :edit, :update, :create]
+    resources :tests, only: [:new, :create, :index, :show, :edit, :update, :destroy]
 
     resources :lessons do
       resources :contents
+      resources :tests do
+      resources :questions, only: [:new, :create, :edit, :update, :destroy]
+      end
     end
     
+    get 'lessons/:id', to: 'admin/lessons#show', as: 'admin_lesson'
     get 'dashboards', to: 'dashboards#index', as: 'dashboards'
    
     resources :contents
@@ -31,6 +38,7 @@ Rails.application.routes.draw do
     resources :tests
     resources :contents
     resource :dashboard, only: [:show]
+    resources :tests, only: [:show]
 
     resources :lessons do
       resources :contents
