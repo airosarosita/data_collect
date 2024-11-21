@@ -3,11 +3,11 @@ class Admin::TestsController < ApplicationController
 
   def index
     @tests = Test.all
+    @questions = Question.all
   end
 
   def show
     @test = Test.find(params[:id])
-    @lesson = @test.lesson  # Corrected this line to use Lesson.find
   end
 
   def new
@@ -58,8 +58,8 @@ class Admin::TestsController < ApplicationController
 
   def attach_files
     # Attach photo, audio, and video if they are present
-    if params[:test][:photo].present?
-      @test.photo.attach(params[:test][:photo])
+    if params[:test][:image].present?
+      @test.image.attach(params[:test][:image])
     end
 
     if params[:test][:audio].present?

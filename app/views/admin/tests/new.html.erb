@@ -3,7 +3,7 @@
 <div class="flex justify-center items-center min-h-screen">
     <div class="w-full max-w-4xl bg-white p-8 rounded shadow-md border border-gray-300">
 
-        <%= form_with model: [:admin, @item], local: true do |form| %>
+        <%= form_with(model: [:admin, @test], local: true, multipart: true) do |form| %>
 
         <!-- Image and Title Field (Side by Side) -->
         <div class="field mb-4 flex items-center space-x-4">
@@ -27,7 +27,7 @@
 
         <!-- Action Buttons as a Link -->
         <div class="actions flex justify-center mt-4">
-            <%= link_to 'SAVE', admin_tests_path, class: "text-white font-bold py-2 px-8 rounded-lg hover:bg-green-600", style: "background-color: #23A50A;" %>
+            <%= form.submit "Save", class: "text-white font-bold py-2 px-8 rounded-lg hover:bg-green-600", style: "background-color: #23A50A;" %>
         </div>
 
         <!-- Link kembali ke daftar test -->

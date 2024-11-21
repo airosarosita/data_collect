@@ -1,7 +1,7 @@
-<div class="w-full max-w-6xl p-6 flex justify-center">
-    <div id="<%= dom_id(question) %>" class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-        <h2 class="font-semibold text-indigo-700 text-lg mb-2"><%= question.title %></h2>
-        <p class="text-gray-600 mb-4"><%= question %></p>
-        <%= link_to "View Test", edit_admin_question_path(question), class: "text-green-500 hover:underline" %>
-    </div>
-</div>
+<% @questions.each do |question| %>
+  <div id="<%= dom_id(question) %>" class="border border-gray-200 p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <h2 class="font-semibold text-indigo-700 text-lg mb-2"><%= question.title %></h2>
+    <p class="text-gray-600 mb-4"><%= question %></p>
+    <%= link_to "View Test", edit_admin_question_path(question), class: "text-green-500 hover:underline" %>
+  </div>
+<% end %>
